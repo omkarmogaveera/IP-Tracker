@@ -1,8 +1,8 @@
 -- Database Schema for IP Tracking Login System
 
--- Create the database if it doesn't exist
-CREATE DATABASE IF NOT EXISTS `ip_tracking_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE `ip_tracking_db`;
+-- Create the database if it doesn't exist (Localhost only)
+-- CREATE DATABASE IF NOT EXISTS `ip_tracking_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+-- USE `ip_tracking_db`;
 
 -- Create users table
 CREATE TABLE IF NOT EXISTS `users` (
