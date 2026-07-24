@@ -91,11 +91,11 @@ If you want the modern developer experience where you simply push your code to G
 3. Railway will instantly detect that it is a PHP project and start building it.
 
 ### Step 4: Link the Database to the App
-Because I updated your code to automatically detect Railway environment variables, you don't need to change any code! Just pass the database details into your app:
+Because I updated your code to automatically detect Railway environment variables, you don't need to manually copy all the database details anymore! Just pass the main connection string:
 1. On your Railway project canvas, click on your **GitHub repo block** (your PHP app) and go to the **Variables** tab.
-2. Click **New Variable**.
-3. **The Easy Way:** Select **Reference Variable**, choose your MySQL database from the dropdown, and Railway will automatically pull in all 5 variables (`MYSQLHOST`, `MYSQLDATABASE`, `MYSQLUSER`, `MYSQLPASSWORD`, `MYSQLPORT`).
-4. **The Manual Way:** If you don't see Reference Variable, manually add those 5 variables by copying the exact values from the MySQL block's **Connect** tab.
+2. Click **New Variable** -> **Reference Variable**.
+3. Select your MySQL database from the dropdown, and select the `MYSQL_URL` variable.
+4. It should now show a variable named `MYSQL_URL` with the value `${{ MySQL.MYSQL_URL }}` (exactly as Railway prompted you!).
 5. Once added, Railway will automatically redeploy your app with the new database connection!
 
 ### Step 5: Import the Schema & Go Live
