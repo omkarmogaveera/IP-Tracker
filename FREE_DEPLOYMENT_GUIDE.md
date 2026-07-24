@@ -81,7 +81,7 @@ If you want the modern developer experience where you simply push your code to G
 
 ### Step 2: Create a Database on Railway
 1. Go to [Railway.app](https://railway.app/) and log in with your GitHub account.
-2. Click **New Project** -> **Provision MySQL**. 
+2. Click **New Project** (or the **+ New** button) -> **Database** -> **MySQL**. 
 3. Wait a few seconds for the database to spin up. Click on the new **MySQL block** on your canvas.
 4. In the right-side menu, click on the **Connect** tab (or **Data** tab depending on the UI version). Here you will see your database credentials (Host, Port, User, Password, and Database Name). Keep this handy!
 
