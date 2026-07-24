@@ -90,18 +90,18 @@ If you want the modern developer experience where you simply push your code to G
 3. Railway will instantly detect that it is a PHP project and start building it.
 
 ### Step 4: Link the Database to the App
-1. You cannot hardcode `localhost` anymore! In Railway, click on your GitHub repo block, go to the **Variables** tab.
-2. Add the environment variables from your MySQL database. 
-3. *Code adjustment required:* You will need to modify your `config/database.php` in your code to read these environment variables instead of hardcoded strings. For example:
-   ```php
-   define('DB_HOST', getenv('MYSQLHOST'));
-   define('DB_NAME', getenv('MYSQLDATABASE'));
-   define('DB_USER', getenv('MYSQLUSER'));
-   define('DB_PASS', getenv('MYSQLPASSWORD'));
-   ```
-4. Commit and push that change to GitHub. Railway will automatically detect the new push and redeploy!
+Because I updated your code to automatically detect Railway environment variables, you don't need to change any code! Just pass the database details into your app:
+1. On your Railway project canvas, click on your **GitHub repo block** and go to the **Variables** tab.
+2. Click **New Variable** and add the following 5 variables (copying the exact values from your MySQL block's Variables tab):
+   * `MYSQLHOST` (e.g., *roundhouse.proxy.rlwy.net*)
+   * `MYSQLDATABASE` (e.g., *railway*)
+   * `MYSQLUSER` (e.g., *root*)
+   * `MYSQLPASSWORD` (e.g., *your_generated_password*)
+   * `MYSQLPORT` (e.g., *33060*)
+3. Once you add these, Railway will automatically redeploy your app with the new database connection!
 
 ### Step 5: Import the Schema & Go Live
-1. You need to create the tables in your Railway MySQL database. You can connect to it using a local tool like **MySQL Workbench** or **DBeaver** using the credentials Railway gave you, and run your `schema.sql` file.
-2. Finally, click on your GitHub app block in Railway, go to the **Settings** tab, and click **Generate Domain**.
-3. Railway will give you a live URL (e.g., `your-app-production.up.railway.app`). Click it, and your site is live!
+1. You need to create your tables in the Railway database. The easiest way is to click on your **MySQL block** in Railway, go to the **Data** tab, click **New Table** -> **Raw Query** (or use a local database tool like DBeaver/MySQL Workbench to connect to it).
+2. Paste the contents of your local `config/schema.sql` file and execute it to create your `users` and `login_logs` tables.
+3. Finally, click on your **GitHub app block**, go to the **Settings** tab, scroll down to **Domains**, and click **Generate Domain**.
+4. Railway will give you a live URL (e.g., `your-app-production.up.railway.app`). Click it, and your site is live!
