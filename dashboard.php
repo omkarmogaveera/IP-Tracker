@@ -52,7 +52,7 @@
     <div class="bg-shape shape-1"></div>
     <div class="bg-shape shape-2"></div>
 
-    <div class="container d-flex justify-content-center align-items-center py-5">
+    <div class="container d-flex justify-content-center py-5">
         <div class="auth-card dashboard-container p-4 p-md-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2>IP Location Dashboard</h2>

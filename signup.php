@@ -15,7 +15,7 @@
     <div class="bg-shape shape-1"></div>
     <div class="bg-shape shape-2"></div>
 
-    <div class="container d-flex justify-content-center align-items-center">
+    <div class="container d-flex justify-content-center">
         <div class="auth-card p-4 p-md-5">
             <h2>Create Account</h2>
             <p class="subtitle">Join our secure enterprise platform</p>
