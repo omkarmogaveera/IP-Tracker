@@ -1,0 +1,11 @@
+{
+  "name": "omkar/ip-tracker",
+  "description": "IP Tracking System",
+  "type": "project",
+  "require": {
+    "php": "^8.0",
+    "ext-pdo": "*",
+    "ext-pdo_mysql": "*",
+    "ext-curl": "*"
+  }
+}
