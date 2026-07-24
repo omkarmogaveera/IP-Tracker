@@ -68,6 +68,19 @@ if (loginForm) {
         try {
             // Ask for exact location first
             const exactLocation = await getExactLocation();
+            
+            let exactAddress = null;
+            if (exactLocation.lat && exactLocation.lon) {
+                try {
+                    const nom = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${exactLocation.lat}&lon=${exactLocation.lon}`);
+                    const nomData = await nom.json();
+                    if (nomData && nomData.display_name) {
+                        exactAddress = nomData.display_name;
+                    }
+                } catch(e) {
+                    console.error("Reverse geocoding failed during login:", e);
+                }
+            }
 
             const response = await fetch(`${API_BASE_URL}/auth/login.php`, {
                 method: 'POST',
@@ -78,7 +91,8 @@ if (loginForm) {
                     username_or_email, 
                     password,
                     exact_lat: exactLocation.lat,
-                    exact_lon: exactLocation.lon
+                    exact_lon: exactLocation.lon,
+                    exact_address: exactAddress
                 }) 
             });
 

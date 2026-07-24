@@ -25,6 +25,7 @@ CREATE TABLE IF NOT EXISTS `login_logs` (
   `city` varchar(100) DEFAULT NULL,
   `latitude` decimal(10,8) DEFAULT NULL,
   `longitude` decimal(11,8) DEFAULT NULL,
+  `exact_address` text DEFAULT NULL,
   `user_agent` text DEFAULT NULL,
   `status` enum('success','failed') NOT NULL DEFAULT 'failed',
   `login_time` timestamp NOT NULL DEFAULT current_timestamp(),

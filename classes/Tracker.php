@@ -89,7 +89,7 @@ class Tracker {
     /**
      * Log the login attempt
      */
-    public function logAttempt($user_id, $status, $exact_lat = null, $exact_lon = null) {
+    public function logAttempt($user_id, $status, $exact_lat = null, $exact_lon = null, $exact_address = null) {
         if (!$this->conn) return false;
 
         $ip_address = $this->getUserIP();
@@ -116,8 +116,8 @@ class Tracker {
         }
 
         $query = "INSERT INTO " . $this->table_name . " 
-                  (user_id, ip_address, country, city, latitude, longitude, user_agent, status) 
-                  VALUES (:user_id, :ip_address, :country, :city, :latitude, :longitude, :user_agent, :status)";
+                  (user_id, ip_address, country, city, latitude, longitude, exact_address, user_agent, status) 
+                  VALUES (:user_id, :ip_address, :country, :city, :latitude, :longitude, :exact_address, :user_agent, :status)";
 
         $stmt = $this->conn->prepare($query);
 
@@ -127,6 +127,7 @@ class Tracker {
         $stmt->bindParam(':city', $city);
         $stmt->bindParam(':latitude', $latitude);
         $stmt->bindParam(':longitude', $longitude);
+        $stmt->bindParam(':exact_address', $exact_address);
         $stmt->bindParam(':user_agent', $user_agent);
         $stmt->bindParam(':status', $status);
 
