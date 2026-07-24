@@ -32,6 +32,13 @@ class Tracker {
             $ipaddress = $_SERVER['REMOTE_ADDR'];
         else
             $ipaddress = 'UNKNOWN';
+            
+        // If there are multiple IPs (like from a proxy), take the first one
+        if (strpos($ipaddress, ',') !== false) {
+            $ips = explode(',', $ipaddress);
+            $ipaddress = trim($ips[0]);
+        }
+        
         return $ipaddress;
     }
 
