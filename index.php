@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enterprise IP Tracking | Sign Up</title>
+    <title>Enterprise IP Tracking | Login</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -17,31 +17,26 @@
 
     <div class="container d-flex justify-content-center align-items-center">
         <div class="auth-card p-4 p-md-5">
-            <h2>Create Account</h2>
-            <p class="subtitle">Join our secure enterprise platform</p>
+            <h2>Welcome Back</h2>
+            <p class="subtitle">Secure login with enterprise IP tracking</p>
             
-            <div id="signupAlert" class="alert p-3 mb-4" role="alert"></div>
+            <div id="loginAlert" class="alert p-3 mb-4" role="alert"></div>
 
-            <form id="signupForm">
+            <form id="loginForm">
                 <div class="mb-4">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="username" placeholder="Choose a username" required>
+                    <label for="username_or_email" class="form-label">Email or Username</label>
+                    <input type="text" class="form-control" id="username_or_email" placeholder="Enter your email or username" required>
                 </div>
                 
-                <div class="mb-4">
-                    <label for="email" class="form-label">Email Address</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
-                </div>
-
                 <div class="mb-4">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Create a strong password" required minlength="6">
+                    <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
                 </div>
                 
-                <button type="submit" class="btn btn-primary btn-lg w-100 mb-4">Register</button>
+                <button type="submit" class="btn btn-primary btn-lg w-100 mb-4">Sign In</button>
                 
                 <p class="text-center mb-0" style="color: var(--text-muted); font-size: 0.9rem;">
-                    Already have an account? <a href="index.html" class="auth-link">Log in here</a>
+                    Don't have an account? <a href="signup.php" class="auth-link">Sign up here</a>
                 </p>
             </form>
         </div>
@@ -50,6 +45,6 @@
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- App Logic -->
-    <script src="assets/js/app.js"></script>
+    <script src="assets/js/app.js?v=2"></script>
 </body>
 </html>

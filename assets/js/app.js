@@ -54,7 +54,7 @@ if (loginForm) {
                 showAlert('loginAlert', 'Login successful! Redirecting to Dashboard...', false);
                 
                 // Redirect to the new dashboard
-                setTimeout(() => { window.location.href = 'dashboard.html'; }, 1500);
+                setTimeout(() => { window.location.href = 'dashboard.php'; }, 1500);
             } else {
                 showAlert('loginAlert', data.message || 'Login failed.');
                 btn.innerHTML = originalBtnText;
@@ -99,7 +99,7 @@ if (signupForm) {
             if (response.ok) {
                 showAlert('signupAlert', 'Account created successfully! You can now login.', false);
                 signupForm.reset();
-                setTimeout(() => { window.location.href = 'index.html'; }, 2000);
+                setTimeout(() => { window.location.href = 'index.php'; }, 2000);
             } else {
                 showAlert('signupAlert', data.message || 'Signup failed.');
             }

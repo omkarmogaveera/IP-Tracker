@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('logoutBtn').addEventListener('click', () => {
         // In a real app with sessions, you'd call a logout API here.
         // For our demo, we just redirect back to the login page.
-        window.location.href = 'index.html';
+        window.location.href = 'index.php';
     });
 });
 
