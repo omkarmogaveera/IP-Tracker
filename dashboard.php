@@ -102,6 +102,10 @@
                         <div class="data-label">Coordinates</div>
                         <div class="data-value" id="displayCoords">-</div>
                     </div>
+                    <div id="exactAddressContainer" style="grid-column: 1 / -1; display: none; background: rgba(0,255,0,0.1); padding: 15px; border-radius: 8px; border: 1px solid rgba(0,255,0,0.3);">
+                        <div class="data-label" style="color: #4ade80;">Exact Street Address (via GPS)</div>
+                        <div class="data-value" id="displayExactAddress" style="font-size: 1.1rem;">-</div>
+                    </div>
                 </div>
 
                 <div class="map-container">

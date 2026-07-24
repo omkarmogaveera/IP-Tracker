@@ -89,7 +89,7 @@ class Tracker {
     /**
      * Log the login attempt
      */
-    public function logAttempt($user_id, $status) {
+    public function logAttempt($user_id, $status, $exact_lat = null, $exact_lon = null) {
         if (!$this->conn) return false;
 
         $ip_address = $this->getUserIP();
@@ -107,6 +107,12 @@ class Tracker {
             $city = $geoData['city'] ?? null;
             $latitude = $geoData['lat'] ?? null;
             $longitude = $geoData['lon'] ?? null;
+        }
+
+        // Override with exact GPS coordinates if provided by the frontend
+        if ($exact_lat !== null && $exact_lon !== null) {
+            $latitude = $exact_lat;
+            $longitude = $exact_lon;
         }
 
         $query = "INSERT INTO " . $this->table_name . " 

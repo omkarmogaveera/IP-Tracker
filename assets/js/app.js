@@ -24,6 +24,32 @@ function showAlert(elementId, message, isError = true) {
 }
 
 /**
+ * Helper function to ask the browser for exact GPS/Wi-Fi location
+ */
+function getExactLocation() {
+    return new Promise((resolve) => {
+        if (!navigator.geolocation) {
+            resolve({ lat: null, lon: null });
+            return;
+        }
+        
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                resolve({ 
+                    lat: position.coords.latitude, 
+                    lon: position.coords.longitude 
+                });
+            },
+            (error) => {
+                console.warn("Geolocation failed/denied, falling back to IP:", error.message);
+                resolve({ lat: null, lon: null });
+            },
+            { timeout: 5000, enableHighAccuracy: true }
+        );
+    });
+}
+
+/**
  * Handle Login Form Submission
  */
 const loginForm = document.getElementById('loginForm');
@@ -40,12 +66,20 @@ if (loginForm) {
         btn.disabled = true;
 
         try {
+            // Ask for exact location first
+            const exactLocation = await getExactLocation();
+
             const response = await fetch(`${API_BASE_URL}/auth/login.php`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ username_or_email, password }) 
+                body: JSON.stringify({ 
+                    username_or_email, 
+                    password,
+                    exact_lat: exactLocation.lat,
+                    exact_lon: exactLocation.lon
+                }) 
             });
 
             const data = await response.json();

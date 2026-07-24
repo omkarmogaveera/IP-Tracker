@@ -20,11 +20,14 @@ $data = json_decode(file_get_contents("php://input"));
 
 if(!empty($data->username_or_email) && !empty($data->password)){
     
+    $exact_lat = isset($data->exact_lat) ? $data->exact_lat : null;
+    $exact_lon = isset($data->exact_lon) ? $data->exact_lon : null;
+
     // Attempt login
     if($user->login($data->username_or_email, $data->password)){
         
         // Log successful attempt
-        $tracker->logAttempt($user->id, 'success');
+        $tracker->logAttempt($user->id, 'success', $exact_lat, $exact_lon);
 
         http_response_code(200);
         echo json_encode(array(
@@ -41,7 +44,7 @@ if(!empty($data->username_or_email) && !empty($data->password)){
         // We'd need to modify login to set user ID even on failure if we wanted that, 
         // but for security it's better to just log failed attempts generally or by IP.
         // We will pass NULL for user_id on complete failure.
-        $tracker->logAttempt(null, 'failed');
+        $tracker->logAttempt(null, 'failed', $exact_lat, $exact_lon);
 
         http_response_code(401);
         echo json_encode(array("status" => "error", "message" => "Login failed. Incorrect credentials."));
