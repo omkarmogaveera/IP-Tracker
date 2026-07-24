@@ -50,7 +50,7 @@ if (loginForm) {
 
             const data = await response.json();
 
-            if (response.ok) {
+            if (response.ok && data && data.status === 'success') {
                 showAlert('loginAlert', 'Login successful! Redirecting to Dashboard...', false);
                 
                 // Redirect to the new dashboard
@@ -96,12 +96,12 @@ if (signupForm) {
 
             const data = await response.json();
 
-            if (response.ok) {
+            if (response.ok && data && data.status === 'success') {
                 showAlert('signupAlert', 'Account created successfully! You can now login.', false);
                 signupForm.reset();
                 setTimeout(() => { window.location.href = 'index.php'; }, 2000);
             } else {
-                showAlert('signupAlert', data.message || 'Signup failed.');
+                showAlert('signupAlert', (data && data.message) ? data.message : 'Signup failed.');
             }
         } catch (error) {
             showAlert('signupAlert', 'Network error occurred. Please try again.');

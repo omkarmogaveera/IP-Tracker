@@ -48,6 +48,7 @@ class Database {
             // Ensure data is returned as UTF-8
             $this->conn->exec("set names utf8");
         } catch(PDOException $exception) {
+            http_response_code(500); // Crucial: tell the browser it failed!
             echo json_encode([
                 "status" => "error", 
                 "message" => "Database connection error: " . $exception->getMessage()

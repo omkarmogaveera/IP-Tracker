@@ -65,9 +65,13 @@ class User {
         $stmt->bindParam(':email', $this->email);
         $stmt->bindParam(':password_hash', $this->password_hash);
 
-        if ($stmt->execute()) {
-            $this->id = $this->conn->lastInsertId();
-            return true;
+        try {
+            if ($stmt->execute()) {
+                $this->id = $this->conn->lastInsertId();
+                return true;
+            }
+        } catch (PDOException $e) {
+            error_log("User Signup Error: " . $e->getMessage());
         }
         return false;
     }
@@ -86,16 +90,19 @@ class User {
         $username_or_email = htmlspecialchars(strip_tags($username_or_email));
         $stmt->bindParam(1, $username_or_email);
         $stmt->bindParam(2, $username_or_email);
-        $stmt->execute();
-
-        if ($stmt->rowCount() > 0) {
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            if (password_verify($password, $row['password_hash'])) {
-                $this->id = $row['id'];
-                $this->username = $row['username'];
-                $this->email = $row['email'];
-                return true;
+        try {
+            $stmt->execute();
+            if ($stmt->rowCount() > 0) {
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                if (password_verify($password, $row['password_hash'])) {
+                    $this->id = $row['id'];
+                    $this->username = $row['username'];
+                    $this->email = $row['email'];
+                    return true;
+                }
             }
+        } catch (PDOException $e) {
+            error_log("User Login Error: " . $e->getMessage());
         }
         return false;
     }
